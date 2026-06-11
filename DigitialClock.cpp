@@ -1,14 +1,11 @@
-#include <iostream>
 #include <chrono>
 #include <array>
 #include "raylib.h"
-#include <vector>
-#include <thread>
 
 // clang++ -Wall -std=c++20 -stdlib=libc++ DigitialClock.cpp -o clock -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
-constexpr int WIDTH = 800;
-constexpr int HEIGHT = 600;
+constexpr int WIDTH = 1280;
+constexpr int HEIGHT = 720;
 constexpr float node_thickness = 18.5f;
 constexpr float node_width = 37.0f;
 constexpr int point_count = 6;
@@ -112,9 +109,10 @@ int main()
         BeginDrawing();
         ClearBackground(BLACK);
 
-        draw_digits(100, 150, format_time);
+        draw_digits(400, 300, format_time);
 
         EndDrawing();
+
     }
 
     CloseWindow();

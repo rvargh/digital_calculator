@@ -12,6 +12,9 @@ constexpr int point_count = 6;
 constexpr float gap = 5.0f;
 constexpr float STEP = 25.0f;
 
+constexpr  Color SEGMENT_ON = GREEN;
+constexpr  Color SEGMENT_OFF = BLACK;
+
 struct SegmentState
 {
     bool top, top_left, top_right, middle, bottom_left, bottom_right, bottom;
@@ -84,20 +87,20 @@ void draw_digits(const float start_x, const float start_y, std::string digits)
 
         auto state = segment_state.at(raw_int);
 
-        draw_segments({current_x + STEP, start_y}, true, state.top ? RED : GRAY);                          // top
-        draw_segments({current_x, start_y + STEP}, false, state.top_left ? RED : GRAY);                    // upper_left
-        draw_segments({current_x + 2 * STEP, start_y + STEP}, false, state.top_right ? RED : GRAY);        // upper_right
-        draw_segments({current_x + STEP, start_y + 2 * STEP}, true, state.middle ? RED : GRAY);            // middle
-        draw_segments({current_x, start_y + 3 * STEP}, false, state.bottom_left ? RED : GRAY);             // lower_left
-        draw_segments({current_x + 2 * STEP, start_y + 3 * STEP}, false, state.bottom_right ? RED : GRAY); // lower_right
-        draw_segments({current_x + STEP, start_y + 4 * STEP}, true, state.bottom ? RED : GRAY);            // bottom
+        draw_segments({current_x + STEP, start_y}, true, state.top ? SEGMENT_ON : SEGMENT_OFF);                          // top
+        draw_segments({current_x, start_y + STEP}, false, state.top_left ? SEGMENT_ON : SEGMENT_OFF);                    // upper_left
+        draw_segments({current_x + 2 * STEP, start_y + STEP}, false, state.top_right ? SEGMENT_ON : SEGMENT_OFF);        // upper_right
+        draw_segments({current_x + STEP, start_y + 2 * STEP}, true, state.middle ? SEGMENT_ON : SEGMENT_OFF);            // middle
+        draw_segments({current_x, start_y + 3 * STEP}, false, state.bottom_left ? SEGMENT_ON : SEGMENT_OFF);             // lower_left
+        draw_segments({current_x + 2 * STEP, start_y + 3 * STEP}, false, state.bottom_right ? SEGMENT_ON : SEGMENT_OFF); // lower_right
+        draw_segments({current_x + STEP, start_y + 4 * STEP}, true, state.bottom ? SEGMENT_ON : SEGMENT_OFF);            // bottom
     }
 }
 
 int main()
 {
 
-    InitWindow(WIDTH, HEIGHT, "Seven Segment Calculator");
+    InitWindow(WIDTH, HEIGHT, "Digital Clock");
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
